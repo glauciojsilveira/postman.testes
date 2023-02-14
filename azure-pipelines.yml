@@ -14,26 +14,8 @@ steps:
   inputs:
     versionSpec: '10.x'
   displayName: 'Install Node.js'
-- task: Npm@1
-  inputs:
-    command: 'install'
-    workingDir: 'install -g newman'
-  
-- task: Npm@1
-  inputs:
-    command: 'custom'
-    workingDir: 'collection'
-    customCommand: 'install -g newman-reporter-htmlextra'
 
-
-- task: CmdLine@2
-  inputs:
-    script: 'newman run The_Star_Wars_API.postman_collection_v2.json -r htmlextra --reporters cli,junit,json,htmlextra --reporter-junit-export  junitreport.xml --reporter-htmlextra-export TestReportApiStarWar.html'
-    
-- task: UploadPostmanHtmlReport@1
-  inputs:
-    cwd: '$(System.DefaultWorkingDirectory)'
-  
+   
 - script: |
     npm install
     npm run build
@@ -41,6 +23,7 @@ steps:
     npm install -g newman-reporter-htmlextra
     newman run The_Star_Wars_API.postman_collection_v2.json
     The_Star_Wars_API.postman_collection_v2.json -r htmlextra --reporters cli,junit,json,htmlextra --reporter-junit-export  junitreport.xml --reporter-htmlextra-export TestReportApiStarWar.html
+ 
 - task: PublishTestResults@2
   inputs:
     testResultsFormat: 'JUnit'
