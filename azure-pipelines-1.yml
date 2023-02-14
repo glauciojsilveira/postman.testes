@@ -1,0 +1,35 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+
+steps:
+- task: NodeTool@0
+
+  inputs:
+    versionSpec: '10.x'
+  displayName: 'Install Node.js'
+ 
+
+
+
+- script: |
+    npm install
+    npm run build
+    npm install -g newman
+    newman -v
+    npm install -g newman-reporter-htmlextra
+    newman run The_Star_Wars_API.postman_collection_v2.json.json
+    npm install -g newman-reporter-htmlextra
+    newman run The_Star_Wars_API.postman_collection_v2.json.json -r htmlextra –reporter-htmlextra-export ./newman/The_Star_Wars_API.postman_collection_v2.json.html
+
+
+  displayName: 'Teste de API Star War by Glaucio v2.0'
+
