@@ -20,7 +20,7 @@ steps:
     npm run build
     npm install -g newman
     npm install -g newman-reporter-htmlextra
-    newman run The Star Wars API.postman_collection v1.json
+    newman run The_Star_Wars_API.postman_collection.json
     
 
   displayName: 'npm install and build'
