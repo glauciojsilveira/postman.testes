@@ -20,7 +20,7 @@ steps:
 
 
 
-- script: |
+- script: 
     npm install
     npm run build
     npm install -g newman
