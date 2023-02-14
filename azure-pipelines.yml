@@ -7,7 +7,7 @@ trigger:
 - main
 
 pool:
-  vmImage: Windos-lasted
+  vmImage: ubuntu-latest
 
 
 steps:
