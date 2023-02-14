@@ -12,19 +12,23 @@ pool:
 
 steps:
 - task: NodeTool@0
+
   inputs:
     versionSpec: '10.x'
   displayName: 'Install Node.js'
+ 
+
+
 
 - script: |
     npm install
     npm run build
     npm install -g newman
+    newman -v
     npm install -g newman-reporter-htmlextra
     newman run The_Star_Wars_API.postman_collection.json
     npm install -g newman-reporter-htmlextra
-    newman run The_Star_Wars_API.postman_collection.json -r htmlextra –reporter-htmlextra-export Relatorio_The_Star_Wars_API.html
-    npx newman run The_Star_Wars_API.postman_collection.json --reporters htmlextra --reporter-htmlextra-export ./newman/test-results.html
-    cd ./newman
+    newman run The_Star_Wars_API.postman_collection.json -r htmlextra –reporter-htmlextra-export ./newman/Relatorio_The_Star_Wars_API.html
 
-  displayName: 'npm install and build'
+
+  displayName: 'Teste de API Star War by Glaucio'
